@@ -10,7 +10,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [ReportController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'fullname'])->name('profile.edit');
@@ -23,6 +25,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 // Route::get('/', [ReportController::class, 'welcome'])->name('welcome');
+// Route::get('/dashboard', [ReportController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 // Route::post('/store', [ReportController::class, 'store'])->name('reports.store');
 // Route::get('/create', [ReportController::class, 'create'])->name('reports.create');
 // Route::middleware((Admin::class))->group(function(){
